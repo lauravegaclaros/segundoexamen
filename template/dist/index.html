@@ -82,16 +82,6 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
-        /* Asegurar que el navbar funcione correctamente */
-        .navbar-toggler {
-            border: none;
-            padding: 0.25rem 0.5rem;
-        }
-        
-        .navbar-toggler:focus {
-            box-shadow: none;
-        }
-        
         /* Mejorar la visualización del menú móvil */
         @media (max-width: 991.98px) {
             .navbar-collapse {
@@ -118,13 +108,13 @@
                         <a class="nav-link active" href="#" onclick="showHome();">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="scrollToSection('features');">Características</a>
+                        <a class="nav-link" href="#features" onclick="scrollToSection('features');">Características</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="showUIComponents();">Componentes UI</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="scrollToSection('notifications');">Notificaciones</a>
+                        <a class="nav-link" href="#notifications" onclick="scrollToSection('notifications');">Notificaciones</a>
                     </li>
                 </ul>
             </div>
@@ -332,28 +322,53 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
+    // Variable global para controlar el menú
+    let isMobileMenuOpen = false;
+
     // Función para cerrar el menú móvil
     function closeMobileMenu() {
         const navbarCollapse = document.getElementById('navbarNav');
         if (navbarCollapse.classList.contains('show')) {
             const bsCollapse = new bootstrap.Collapse(navbarCollapse);
             bsCollapse.hide();
+            isMobileMenuOpen = false;
         }
     }
 
     // Función para desplazarse a una sección
     function scrollToSection(sectionId) {
-        closeMobileMenu();
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({behavior: 'smooth'});
+        if (isMobileMenuOpen) {
+            closeMobileMenu();
+            // Pequeño delay para que se cierre el menú antes de hacer scroll
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({behavior: 'smooth'});
+                }
+            }, 300);
+        } else {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({behavior: 'smooth'});
+            }
         }
     }
 
     // Función para mostrar componentes UI
     function showUIComponents() {
-        closeMobileMenu();
-        
+        if (isMobileMenuOpen) {
+            closeMobileMenu();
+            // Pequeño delay para que se cierre el menú antes de mostrar la sección
+            setTimeout(() => {
+                showUIComponentsNow();
+            }, 300);
+        } else {
+            showUIComponentsNow();
+        }
+    }
+
+    // Función principal para mostrar componentes UI
+    function showUIComponentsNow() {
         // Ocultar todas las secciones excepto UI Components
         document.querySelectorAll('section').forEach(section => {
             if (section.id === 'ui-components') {
@@ -365,14 +380,28 @@
         
         // Scroll a la sección
         setTimeout(() => {
-            document.getElementById('ui-components').scrollIntoView({behavior: 'smooth'});
+            const uiSection = document.getElementById('ui-components');
+            if (uiSection) {
+                uiSection.scrollIntoView({behavior: 'smooth'});
+            }
         }, 100);
     }
 
     // Función para volver al inicio
     function showHome() {
-        closeMobileMenu();
-        
+        if (isMobileMenuOpen) {
+            closeMobileMenu();
+            // Pequeño delay para que se cierre el menú antes de mostrar el home
+            setTimeout(() => {
+                showHomeNow();
+            }, 300);
+        } else {
+            showHomeNow();
+        }
+    }
+
+    // Función principal para mostrar el home
+    function showHomeNow() {
         // Mostrar todas las secciones excepto UI Components
         document.querySelectorAll('section').forEach(section => {
             if (section.id === 'ui-components') {
@@ -456,6 +485,16 @@
     // Inicialización
     document.addEventListener('DOMContentLoaded', function() {
         checkNotificationPermission();
+        
+        // Detectar cuando el menú se abre/cierra
+        const navbarCollapse = document.getElementById('navbarNav');
+        navbarCollapse.addEventListener('show.bs.collapse', function () {
+            isMobileMenuOpen = true;
+        });
+        navbarCollapse.addEventListener('hide.bs.collapse', function () {
+            isMobileMenuOpen = false;
+        });
+        
         console.log('Aplicación cargada correctamente');
     });
     </script>
