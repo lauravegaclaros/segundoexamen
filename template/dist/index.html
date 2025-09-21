@@ -62,11 +62,19 @@
         .btn-secondary {
             background-color: var(--secondary-color);
             border-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #189e7a;
+            border-color: #189e7a;
+            color: white;
         }
         
         .feature-card {
             transition: transform 0.3s;
             height: 100%;
+            margin-bottom: 1rem;
         }
         
         .feature-card:hover {
@@ -82,6 +90,16 @@
         
         .navbar-toggler:focus {
             box-shadow: none;
+        }
+        
+        /* Mejorar la visualización del menú móvil */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: #343a40;
+                padding: 1rem;
+                border-radius: 0.375rem;
+                margin-top: 0.5rem;
+            }
         }
     </style>
 </head>
@@ -100,13 +118,13 @@
                         <a class="nav-link active" href="#" onclick="showHome();">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#features" onclick="scrollToSection('features');">Características</a>
+                        <a class="nav-link" href="#" onclick="scrollToSection('features');">Características</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="showUIComponents();">Componentes UI</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#notifications" onclick="scrollToSection('notifications');">Notificaciones</a>
+                        <a class="nav-link" href="#" onclick="scrollToSection('notifications');">Notificaciones</a>
                     </li>
                 </ul>
             </div>
@@ -115,19 +133,16 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero-section">
-        <div class="container px-4 px-lg-5 h-100">
-            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-                <div class="col-lg-8 align-self-end">
-                    <h1 class="text-white font-weight-bold">Aplicación PWA con Bootstrap</h1>
-                    <hr class="divider" />
-                </div>
-                <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 mb-5">Una aplicación web progresiva moderna con funcionalidades offline y notificaciones push</p>
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1 class="text-white fw-bold mb-4">Aplicación PWA con Bootstrap</h1>
+                    <p class="text-white mb-5">Una aplicación web progresiva moderna con funcionalidades offline y notificaciones push</p>
                     <div class="mt-4">
-                        <button class="btn btn-primary btn-lg me-2" onclick="requestNotificationPermission()">
+                        <button class="btn btn-primary btn-lg me-2 mb-2" onclick="requestNotificationPermission()">
                             <i class="bi bi-bell-fill me-1"></i> Permitir notificaciones
                         </button>
-                        <button class="btn btn-secondary btn-lg" onclick="showDemoNotification()">
+                        <button class="btn btn-secondary btn-lg mb-2" onclick="showDemoNotification()">
                             <i class="bi bi-chat-dots-fill me-1"></i> Probar notificación
                         </button>
                     </div>
@@ -138,42 +153,42 @@
 
     <!-- Features Section -->
     <section id="features" class="py-5 bg-light">
-        <div class="container px-4 px-lg-5">
+        <div class="container">
             <h2 class="section-title">Características Principales</h2>
             <div class="row g-4">
                 <div class="col-md-3 col-sm-6">
-                    <div class="card feature-card">
+                    <div class="card feature-card h-100">
                         <div class="card-body text-center">
-                            <i class="bi bi-lightning-charge-fill text-primary display-4 mb-3"></i>
-                            <h3 class="card-title">Rendimiento</h3>
-                            <p class="card-text">Optimizada para cargar rápidamente incluso en conexiones lentas gracias a la tecnología PWA.</p>
+                            <i class="bi bi-lightning-charge-fill text-primary display-6 mb-3"></i>
+                            <h3 class="h5 card-title">Rendimiento</h3>
+                            <p class="card-text">Optimizada para cargar rápidamente incluso en conexiones lentas.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
-                    <div class="card feature-card">
+                    <div class="card feature-card h-100">
                         <div class="card-body text-center">
-                            <i class="bi bi-wifi-off text-primary display-4 mb-3"></i>
-                            <h3 class="card-title">Modo Offline</h3>
-                            <p class="card-text">Funcionalidad completa incluso sin conexión a Internet mediante Service Workers.</p>
+                            <i class="bi bi-wifi-off text-primary display-6 mb-3"></i>
+                            <h3 class="h5 card-title">Modo Offline</h3>
+                            <p class="card-text">Funcionalidad completa incluso sin conexión a Internet.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
-                    <div class="card feature-card">
+                    <div class="card feature-card h-100">
                         <div class="card-body text-center">
-                            <i class="bi bi-phone text-primary display-4 mb-3"></i>
-                            <h3 class="card-title">Responsive</h3>
-                            <p class="card-text">Diseño adaptable que funciona perfectamente en todos los dispositivos móviles y desktop.</p>
+                            <i class="bi bi-phone text-primary display-6 mb-3"></i>
+                            <h3 class="h5 card-title">Responsive</h3>
+                            <p class="card-text">Diseño adaptable que funciona en todos los dispositivos.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
-                    <div class="card feature-card">
+                    <div class="card feature-card h-100">
                         <div class="card-body text-center">
-                            <i class="bi bi-bell-fill text-primary display-4 mb-3"></i>
-                            <h3 class="card-title">Notificaciones</h3>
-                            <p class="card-text">Notificaciones push para mantener a los usuarios informados de actualizaciones importantes.</p>
+                            <i class="bi bi-bell-fill text-primary display-6 mb-3"></i>
+                            <h3 class="h5 card-title">Notificaciones</h3>
+                            <p class="card-text">Notificaciones push para mantener informados a los usuarios.</p>
                         </div>
                     </div>
                 </div>
@@ -210,7 +225,7 @@
             <h3 class="mt-5">Cards</h3>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <div class="card">
+                    <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">Tarjeta Simple</h5>
                             <p class="card-text">Ejemplo de una tarjeta básica de Bootstrap con texto de ejemplo.</p>
@@ -219,7 +234,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <div class="card">
+                    <div class="card h-100">
                         <div class="card-header">
                             Encabezado de tarjeta
                         </div>
@@ -242,23 +257,13 @@
                 <button type="button" class="btn btn-danger">Danger</button>
                 <button type="button" class="btn btn-warning">Warning</button>
                 <button type="button" class="btn btn-info">Info</button>
-                <button type="button" class="btn btn-light">Light</button>
-                <button type="button" class="btn btn-dark">Dark</button>
-            </div>
-            
-            <div class="d-flex flex-wrap gap-2 mb-4">
-                <button type="button" class="btn btn-outline-primary">Outline Primary</button>
-                <button type="button" class="btn btn-outline-secondary">Outline Secondary</button>
-                <button type="button" class="btn btn-outline-success">Outline Success</button>
-                <button type="button" class="btn btn-outline-danger">Outline Danger</button>
             </div>
             
             <h3 class="mt-5">Formulario de Ejemplo</h3>
             <form class="bg-light p-4 rounded">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">Nunca compartiremos tu email con nadie más.</div>
+                    <input type="email" class="form-control" id="exampleInputEmail1">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Contraseña</label>
@@ -274,22 +279,22 @@
     </section>
 
     <!-- Notifications Section -->
-    <section id="notifications" class="py-5 bg-light">
+    <section id="notifications" class="py-5">
         <div class="container">
             <h2 class="section-title">Configuración de Notificaciones</h2>
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body text-center">
-                            <i class="bi bi-bell-fill text-primary display-4 mb-3"></i>
+                            <i class="bi bi-bell-fill text-primary display-6 mb-3"></i>
                             <h3 class="card-title">Notificaciones PWA</h3>
                             <p class="card-text">Las notificaciones permiten mantener a los usuarios informados incluso cuando no están usando activamente la aplicación.</p>
                             
                             <div class="mt-4">
-                                <button class="btn btn-primary btn-lg me-2" onclick="requestNotificationPermission()">
+                                <button class="btn btn-primary btn-lg me-2 mb-2" onclick="requestNotificationPermission()">
                                     <i class="bi bi-bell-fill me-1"></i> Permitir notificaciones
                                 </button>
-                                <button class="btn btn-secondary btn-lg" onclick="showDemoNotification()">
+                                <button class="btn btn-secondary btn-lg mb-2" onclick="showDemoNotification()">
                                     <i class="bi bi-chat-dots-fill me-1"></i> Probar notificación
                                 </button>
                             </div>
@@ -306,16 +311,16 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-5">
+    <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="text-center">
-                <p>Examen Práctico Segundo Parcial - Tecnologías de Internet</p>
-                <p>CSS Frameworks (Bootstrap), PWA offline y Notificaciones</p>
+                <p class="mb-2">Examen Práctico Segundo Parcial - Tecnologías de Internet</p>
+                <p class="mb-3">CSS Frameworks (Bootstrap), PWA offline y Notificaciones</p>
                 <div class="mt-3">
-                    <button class="btn btn-outline-light me-2" onclick="checkConnectivity()">
+                    <button class="btn btn-outline-light me-2 mb-2" onclick="checkConnectivity()">
                         <i class="bi bi-wifi"></i> Verificar conectividad
                     </button>
-                    <button class="btn btn-outline-light" onclick="clearAppCache()">
+                    <button class="btn btn-outline-light mb-2" onclick="clearAppCache()">
                         <i class="bi bi-trash"></i> Limpiar caché
                     </button>
                 </div>
@@ -327,85 +332,77 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-    // Función para desplazarse a una sección
-    function scrollToSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({behavior: 'smooth'});
-        }
-        cerrarMenuMovil();
-    }
-
-    // Función para cerrar el menú en modo móvil
-    function cerrarMenuMovil() {
+    // Función para cerrar el menú móvil
+    function closeMobileMenu() {
         const navbarCollapse = document.getElementById('navbarNav');
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        
-        // Si el menú está expandido (en móvil) y visible, cerrarlo
         if (navbarCollapse.classList.contains('show')) {
-            // Usamos Bootstrap's collapse API para cerrarlo correctamente
             const bsCollapse = new bootstrap.Collapse(navbarCollapse);
             bsCollapse.hide();
         }
     }
 
-    // Función para mostrar componentes UI 
+    // Función para desplazarse a una sección
+    function scrollToSection(sectionId) {
+        closeMobileMenu();
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.scrollIntoView({behavior: 'smooth'});
+        }
+    }
+
+    // Función para mostrar componentes UI
     function showUIComponents() {
-        // Ocultar todas las secciones principales
+        closeMobileMenu();
+        
+        // Ocultar todas las secciones excepto UI Components
         document.querySelectorAll('section').forEach(section => {
-            if (section.id !== 'ui-components') {
+            if (section.id === 'ui-components') {
+                section.classList.remove('d-none');
+            } else {
                 section.classList.add('d-none');
             }
         });
         
-        // Mostrar la sección de componentes
-        const uiSection = document.getElementById('ui-components');
-        if (uiSection) {
-            uiSection.classList.remove('d-none');
-            setTimeout(() => {
-                uiSection.scrollIntoView({behavior: 'smooth'});
-            }, 100);
-        }
-        cerrarMenuMovil();
+        // Scroll a la sección
+        setTimeout(() => {
+            document.getElementById('ui-components').scrollIntoView({behavior: 'smooth'});
+        }, 100);
     }
 
     // Función para volver al inicio
     function showHome() {
-        // Mostrar todas las secciones principales
+        closeMobileMenu();
+        
+        // Mostrar todas las secciones excepto UI Components
         document.querySelectorAll('section').forEach(section => {
-            if (section.id !== 'ui-components') {
+            if (section.id === 'ui-components') {
+                section.classList.add('d-none');
+            } else {
                 section.classList.remove('d-none');
             }
         });
         
-        // Ocultar la sección de componentes
-        const uiSection = document.getElementById('ui-components');
-        if (uiSection) {
-            uiSection.classList.add('d-none');
-        }
-        
         // Scroll al inicio
         window.scrollTo({top: 0, behavior: 'smooth'});
-        cerrarMenuMovil();
     }
 
     // Verificar estado de permisos de notificación
     function checkNotificationPermission() {
         if (!('Notification' in window)) {
-            document.getElementById('permission-status').textContent = 
-                'Este navegador no soporta notificaciones';
+            document.getElementById('permission-status').textContent = 'Este navegador no soporta notificaciones';
             return;
         }
         
-        if (Notification.permission === 'granted') {
-            document.getElementById('permission-status').textContent = 
-                'Permiso concedido para mostrar notificaciones';
-        } else if (Notification.permission === 'denied') {
-            document.getElementById('permission-status').textContent = 
-                'Permiso denegado para mostrar notificaciones';
-        } else {
-            document.getElementById('permission-status').textContent = 
-                'Permiso para notificaciones aún no solicitado';
+        const status = document.getElementById('permission-status');
+        switch(Notification.permission) {
+            case 'granted':
+                status.textContent = 'Permiso concedido para mostrar notificaciones';
+                break;
+            case 'denied':
+                status.textContent = 'Permiso denegado para mostrar notificaciones';
+                break;
+            default:
+                status.textContent = 'Permiso para notificaciones aún no solicitado';
         }
     }
     
@@ -418,7 +415,6 @@
         
         Notification.requestPermission().then(function(permission) {
             checkNotificationPermission();
-            
             if (permission === 'granted') {
                 showDemoNotification();
             }
@@ -434,8 +430,7 @@
         
         const notification = new Notification('Examen PWA', {
             body: '¡Esta es una notificación de demostración de la aplicación PWA!',
-            icon: 'https://cdn-icons-png.flaticon.com/512/6001/6001368.png',
-            tag: 'demo-notification'
+            icon: 'https://cdn-icons-png.flaticon.com/512/6001/6001368.png'
         });
         
         notification.onclick = function() {
@@ -446,11 +441,9 @@
     
     // Verificar conectividad
     function checkConnectivity() {
-        if (navigator.onLine) {
-            alert('Estás conectado a Internet. ✅');
-        } else {
-            alert('No tienes conexión a Internet. 🚫 Algunas funciones pueden no estar disponibles.');
-        }
+        alert(navigator.onLine ? 
+            'Estás conectado a Internet. ✅' : 
+            'No tienes conexión a Internet. 🚫');
     }
     
     // Limpiar caché de la aplicación (simulado)
@@ -463,15 +456,6 @@
     // Inicialización
     document.addEventListener('DOMContentLoaded', function() {
         checkNotificationPermission();
-        
-        // Cerrar menú automáticamente al hacer clic en enlaces (solo en móvil)
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                setTimeout(cerrarMenuMovil, 300); // Pequeño delay para permitir la animación
-            });
-        });
-        
         console.log('Aplicación cargada correctamente');
     });
     </script>
