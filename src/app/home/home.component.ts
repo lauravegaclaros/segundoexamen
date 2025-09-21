@@ -1,20 +1,20 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { PwaInstallService } from '../services/pwa-install.service';
+import { Component, OnInit, Inject, PLATFORM_ID } from "@angular/core";
+import { CommonModule, isPlatformBrowser } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { PwaInstallService } from "../services/pwa-install.service";
 
 @Component({
-  selector: 'app-home',
+  selector: "app-home",
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
-  frameworkElegido = 'Bootstrap 5';
+  frameworkElegido = "Bootstrap 5";
   notificationSupported = false;
   notificationEnabled = false;
-  notificationStatus = '';
+  notificationStatus = "";
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -23,24 +23,24 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.notificationSupported = 'Notification' in window;
+      this.notificationSupported = "Notification" in window;
       this.updateNotificationStatus();
     }
   }
 
   async requestNotificationPermission() {
-    if (isPlatformBrowser(this.platformId) && 'Notification' in window) {
+    if (isPlatformBrowser(this.platformId) && "Notification" in window) {
       const permission = await Notification.requestPermission();
       this.updateNotificationStatus();
     }
   }
 
   showTestNotification() {
-    if (isPlatformBrowser(this.platformId) && Notification.permission === 'granted') {
-      new Notification('¡Notificación de prueba!', {
-        body: 'Esta es una notificación local desde tu PWA',
-        icon: '/assets/icons/icon-192x192.png',
-        tag: 'test-notification'
+    if (isPlatformBrowser(this.platformId) && Notification.permission === "granted") {
+      new Notification("¡Notificación de prueba!", {
+        body: "Esta es una notificación local desde tu PWA",
+        icon: "/assets/icons/icon-192x192.png",
+        tag: "test-notification"
       });
     }
   }
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
   async installPwa() {
     const installed = await this.pwaService.installPwa();
     if (installed) {
-      console.log('PWA instalada exitosamente');
+      console.log("PWA instalada exitosamente");
     }
   }
 
@@ -58,22 +58,22 @@ export class HomeComponent implements OnInit {
     }
 
     if (!this.notificationSupported) {
-      this.notificationStatus = 'Las notificaciones no son compatibles con este navegador';
+      this.notificationStatus = "Las notificaciones no son compatibles con este navegador";
       return;
     }
 
     switch (Notification.permission) {
-      case 'granted':
+      case "granted":
         this.notificationEnabled = true;
-        this.notificationStatus = '✅ Notificaciones permitidas - ¡Puedes probar ahora!';
+        this.notificationStatus = "✅ Notificaciones permitidas - ¡Puedes probar ahora!";
         break;
-      case 'denied':
+      case "denied":
         this.notificationEnabled = false;
-        this.notificationStatus = '❌ Notificaciones denegadas - Habilítalas en configuración del navegador';
+        this.notificationStatus = "❌ Notificaciones denegadas - Habilítalas en configuración del navegador";
         break;
       default:
         this.notificationEnabled = false;
-        this.notificationStatus = '🔔 Presiona "Permitir Notificaciones" para habilitar';
+        this.notificationStatus = "🔔 Presiona \"Permitir Notificaciones\" para habilitar";
     }
   }
 }
