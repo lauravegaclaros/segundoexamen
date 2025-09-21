@@ -1,0 +1,69 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="/">Mi PWA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" routerLink="/">Inicio</a>
+        <a class="nav-link" routerLink="/ui">Componentes</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="masthead bg-primary text-white text-center py-5" style="padding-top: 8rem!important;">
+  <div class="container d-flex align-items-center flex-column">
+    <h1 class="masthead-heading text-uppercase mb-3">Bienvenido a Mi PWA</h1>
+    <div class="divider-custom divider-light mb-4">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+    <p class="masthead-subheading font-weight-light mb-0">
+      Angular 20 + {{ frameworkElegido }} + PWA
+    </p>
+  </div>
+</header>
+
+<!-- About Section -->
+<section class="page-section bg-light" id="about">
+  <div class="container">
+    <h2 class="page-section-heading text-center text-uppercase text-secondary mb-5">Acerca de</h2>
+    <div class="row">
+      <div class="col-lg-4 ms-auto">
+        <p class="lead">Esta es una aplicación PWA construida con Angular 20 y Bootstrap 5.</p>
+      </div>
+      <div class="col-lg-4 me-auto">
+        <p class="lead">Incluye service workers, notificaciones y funciona completamente offline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Notifications Section -->
+<section class="page-section" id="notifications">
+  <div class="container">
+    <h2 class="page-section-heading text-center text-uppercase mb-5">Notificaciones</h2>
+    <div class="text-center">
+      <button 
+        class="btn btn-success btn-lg me-3 mb-3" 
+        (click)="requestNotificationPermission()"
+        [disabled]="!notificationSupported">
+        <i class="fas fa-bell"></i> Permitir Notificaciones
+      </button>
+      <button 
+        class="btn btn-info btn-lg mb-3" 
+        (click)="showTestNotification()"
+        [disabled]="!notificationEnabled">
+        <i class="fas fa-paper-plane"></i> Probar Notificación
+      </button>
+      <div class="mt-4">
+        <div class="alert alert-info">{{ notificationStatus }}</div>
+      </div>
+    </div>
+  </div>
+</section>
