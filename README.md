@@ -65,3 +65,11 @@ For more information on using the Angular CLI, including detailed command refere
 - Instalación: npm install bootstrap
 - Documentación: https://getbootstrap.com/
 
+
+## Template Utilizado
+
+**Template**: Creative - Start Bootstrap  
+**Fuente**: https://startbootstrap.com/theme/creative  
+**Licencia**: MIT License  
+**Autor**: Start Bootstrap Team
+
