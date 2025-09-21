@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { PwaInstallService } from '../services/pwa-install.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,10 @@ export class HomeComponent implements OnInit {
   notificationEnabled = false;
   notificationStatus = '';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public pwaService: PwaInstallService
+  ) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -38,6 +42,13 @@ export class HomeComponent implements OnInit {
         icon: '/assets/icons/icon-192x192.png',
         tag: 'test-notification'
       });
+    }
+  }
+
+  async installPwa() {
+    const installed = await this.pwaService.installPwa();
+    if (installed) {
+      console.log('PWA instalada exitosamente');
     }
   }
 
