@@ -117,3 +117,61 @@ For more information on using the Angular CLI, including detailed command refere
 - DevTools > Application > Service Workers
 - Debe aparecer "examen-angular-pwa" activo
 
+
+## 🌐 Deploy en GitHub Pages
+
+**URL del sitio**: https://lauravegaclaros.github.io/examen-angular-pwa
+
+### Deploy automático:
+- ✅ GitHub Actions configurado
+- ✅ Build automático en cada push a main
+- ✅ Deploy automático a GitHub Pages
+
+### Verificaciones del sitio:
+- ✅ Sitio carga correctamente
+- ✅ Manifest.json accesible en /manifest.json
+- ✅ Service Worker registrado (DevTools > Application)
+- ✅ Funcionalidad offline operativa
+- ✅ Notificaciones funcionan en HTTPS
+- ✅ Navegación entre rutas (/ y /ui)
+- ✅ Diseño responsive en móvil/desktop
+- ✅ PWA instalable (botón "Instalar" en navegador)
+
+### Tecnologías implementadas:
+- Angular 20 (standalone components)
+- Bootstrap 5.3
+- Service Worker (offline capability)
+- Web App Manifest (PWA)
+- Push Notifications API
+- Responsive Design
+- Web Accessibility (WCAG)
+
+
+## 🌐 Deploy en GitHub Pages
+
+**URL del sitio**: https://lauravegaclaros.github.io/examen-angular-pwa
+
+### Deploy automático:
+- ✅ GitHub Actions configurado
+- ✅ Build automático en cada push a main
+- ✅ Deploy automático a GitHub Pages
+
+### Verificaciones del sitio:
+- ✅ Sitio carga correctamente
+- ✅ Manifest.json accesible en /manifest.json
+- ✅ Service Worker registrado (DevTools > Application)
+- ✅ Funcionalidad offline operativa
+- ✅ Notificaciones funcionan en HTTPS
+- ✅ Navegación entre rutas (/ y /ui)
+- ✅ Diseño responsive en móvil/desktop
+- ✅ PWA instalable (botón "Instalar" en navegador)
+
+### Tecnologías implementadas:
+- Angular 20 (standalone components)
+- Bootstrap 5.3
+- Service Worker (offline capability)
+- Web App Manifest (PWA)
+- Push Notifications API
+- Responsive Design
+- Web Accessibility (WCAG)
+
