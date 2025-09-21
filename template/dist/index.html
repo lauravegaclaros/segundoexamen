@@ -32,13 +32,13 @@
                     <a class="nav-link active" href="#" onclick="showHome()">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#features" onclick="showHome(); setTimeout(() => document.getElementById('features').scrollIntoView({behavior: 'smooth'}), 100)">Características</a>
+                    <a class="nav-link" href="#features">Características</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" onclick="showUIComponents()">Componentes UI</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#notifications" onclick="showHome(); setTimeout(() => scrollToNotifications(), 100)">Notificaciones</a>
+                    <a class="nav-link" href="#notifications">Notificaciones</a>
                 </li>
             </ul>
         </div>
@@ -229,6 +229,14 @@
                             <!-- SECCIÓN ACTUAL (la que debes encontrar y reemplazar) -->
                             <section id="ui-components" class="py-5 d-none">
                             <div class="container">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h2 class="section-title mb-0">Componentes UI de Bootstrap</h2>
+                                <button class="btn btn-primary" onclick="showHome()">
+                                <i class="bi bi-arrow-left"></i> Volver al inicio
+                                </button>
+                            </div>
+        <!-- HASTA AQUÍ -->
+        <!-- ... todo lo demás ... -->
                             <h2 class="section-title">Componentes UI de Bootstrap</h2>
         
                             <h3 class="mt-5">Navbar Responsive</h3>
@@ -260,15 +268,124 @@
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Company Name</div></div>
         </footer>
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- SimpleLightbox plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+       <script>
+    // Función para mostrar componentes UI
+    function showUIComponents() {
+        // Simplemente mostrar la sección y hacer scroll
+        document.getElementById('ui-components').classList.remove('d-none');
+        setTimeout(() => {
+            document.getElementById('ui-components').scrollIntoView({behavior: 'smooth'});
+        }, 100);
+    }
+
+    // Función para volver al inicio
+    function showHome() {
+        // Ocultar la sección de componentes
+        document.getElementById('ui-components').classList.add('d-none');
+        // Scroll al inicio
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    // Función para desplazarse a notificaciones
+    function scrollToNotifications() {
+        document.getElementById('notifications').scrollIntoView({behavior: 'smooth'});
+    }
+
+    // Verificar estado de permisos de notificación
+    function checkNotificationPermission() {
+        if (!('Notification' in window)) {
+            document.getElementById('permission-status').textContent = 
+                'Este navegador no soporta notificaciones';
+            return;
+        }
+        
+        if (Notification.permission === 'granted') {
+            document.getElementById('permission-status').textContent = 
+                'Permiso concedido para mostrar notificaciones';
+        } else if (Notification.permission === 'denied') {
+            document.getElementById('permission-status').textContent = 
+                'Permiso denegado para mostrar notificaciones';
+        } else {
+            document.getElementById('permission-status').textContent = 
+                'Permiso para notificaciones aún no solicitado';
+        }
+    }
+    
+    // Solicitar permiso para notificaciones
+    function requestNotificationPermission() {
+        if (!('Notification' in window)) {
+            alert('Este navegador no soporta notificaciones');
+            return;
+        }
+        
+        Notification.requestPermission().then(function(permission) {
+            checkNotificationPermission();
+            
+            if (permission === 'granted') {
+                showDemoNotification();
+            }
+        });
+    }
+    
+    // Mostrar notificación de demostración
+    function showDemoNotification() {
+        if (Notification.permission !== 'granted') {
+            alert('Primero debe permitir las notificaciones');
+            return;
+        }
+        
+        const notification = new Notification('Examen PWA', {
+            body: '¡Esta es una notificación de demostración de la aplicación PWA!',
+            icon: 'https://cdn-icons-png.flaticon.com/512/6001/6001368.png',
+            tag: 'demo-notification'
+        });
+        
+        notification.onclick = function() {
+            window.focus();
+            notification.close();
+        };
+    }
+    
+    // Verificar conectividad
+    function checkConnectivity() {
+        if (navigator.onLine) {
+            alert('Estás conectado a Internet. ✅');
+        } else {
+            alert('No tienes conexión a Internet. 🚫 Algunas funciones pueden no estar disponibles.');
+        }
+    }
+    
+    // Limpiar caché de la aplicación (simulado)
+    function clearAppCache() {
+        if (confirm('¿Estás seguro de que deseas limpiar el caché de la aplicación?')) {
+            alert('Caché limpiado con éxito. La aplicación funcionará mejor.');
+        }
+    }
+    
+    // Inicialización
+    document.addEventListener('DOMContentLoaded', function() {
+        checkNotificationPermission();
+        
+        // Simular Service Worker para modo offline
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                console.log('SW registered: ', registration);
+            }).catch(function(registrationError) {
+                console.log('SW registration failed: ', registrationError);
+            });
+        }
+        
+        // Mostrar mensaje si estamos offline
+        if (!navigator.onLine) {
+            const offlineAlert = document.createElement('div');
+            offlineAlert.className = 'alert alert-warning alert-dismissible fade show fixed-top mt-5 rounded-0';
+            offlineAlert.innerHTML = `
+                <strong>Modo offline:</strong> Estás utilizando la aplicación sin conexión a Internet.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(offlineAlert);
+        }
+    });
+</script>
     </body>
 </html>
