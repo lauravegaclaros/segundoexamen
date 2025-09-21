@@ -1,9 +1,16 @@
 {
-  "name": "temp-app",
-  "short_name": "temp-app",
+  "name": "Angular PWA - Examen Práctico",
+  "short_name": "Mi PWA",
+  "description": "Aplicación PWA con Angular 20, Bootstrap 5 y funcionalidad offline",
+  "theme_color": "#1976d2",
+  "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "./",
-  "start_url": "./",
+  "scope": "/segundoexamen/",
+  "start_url": "/segundoexamen/",
+  "orientation": "portrait-primary",
+  "categories": ["education", "productivity"],
+  "lang": "es",
+  "dir": "ltr",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
