@@ -3,7 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
+  pull_request:
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -20,33 +21,51 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
+          
       - name: Install dependencies
         run: npm ci
-
-      - name: Build
-        run: npm run build
-
+        
+      - name: Build application
+        run: npm run build -- --configuration production
+        
+      - name: Debug - Check build output structure
+        run: |
+          echo "=== ESTRUCTURA DE DIRECTORIOS ==="
+          find dist/ -type f -name "*.html" -o -name "*.js" -o -name "*.css" | head -20
+          echo "=== CONTENIDO DE DIST ==="
+          ls -la dist/
+          echo "=== CONTENIDO DE SUBDIRECTORIOS ==="
+          ls -la dist/temp-app/ || echo "No existe temp-app"
+          ls -la dist/temp-app/browser/ || echo "No existe browser"
+        
+      - name: Prepare for GitHub Pages
+        run: |
+          # Mueve los archivos a la raíz de dist para GitHub Pages
+          mv dist/temp-app/browser/* dist/
+          rm -rf dist/temp-app
+          
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist/temp-app/temp-app'
+          path: dist/  # Ahora los archivos están en la raíz de dist
 
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    
     runs-on: ubuntu-latest
     needs: build
+    
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
