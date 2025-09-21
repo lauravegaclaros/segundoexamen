@@ -120,7 +120,7 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## 🌐 Deploy en GitHub Pages
 
-**URL del sitio**: https://lauravegaclaros.github.io/examen-angular-pwa
+**URL del sitio**: https://lauravegaclaros.github.io/segundoexamen
 
 ### Deploy automático:
 - ✅ GitHub Actions configurado
@@ -149,7 +149,7 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## 🌐 Deploy en GitHub Pages
 
-**URL del sitio**: https://lauravegaclaros.github.io/examen-angular-pwa
+**URL del sitio**: https://lauravegaclaros.github.io/segundoexamen
 
 ### Deploy automático:
 - ✅ GitHub Actions configurado
