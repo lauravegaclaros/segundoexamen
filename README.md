@@ -57,3 +57,11 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## CSS Framework Elegido
+
+**Bootstrap 5.3**
+- Razón: Amplia comunidad, componentes robustos y buena documentación
+- Instalación: npm install bootstrap
+- Documentación: https://getbootstrap.com/
+
