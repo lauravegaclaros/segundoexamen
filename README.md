@@ -73,3 +73,47 @@ For more information on using the Angular CLI, including detailed command refere
 **Licencia**: MIT License  
 **Autor**: Start Bootstrap Team
 
+
+## Funcionalidad Offline
+
+### Cómo probar offline:
+1. Ejecutar `ng build` para build de producción
+2. Servir con `npx http-server dist/examen-angular-pwa -p 8080`
+3. Abrir http://localhost:8080 y navegar por la app
+4. En DevTools > Network, activar "Offline"
+5. Recargar página - debe seguir funcionando
+
+### Recursos precacheados:
+- ✅ HTML principal (index.html)
+- ✅ CSS de Bootstrap y estilos personalizados
+- ✅ JavaScript de Angular y dependencias
+- ✅ Iconos de la PWA
+- ✅ Manifest.json
+- ✅ Fonts de Font Awesome (cached)
+
+### Verificación del Service Worker:
+- DevTools > Application > Service Workers
+- Debe aparecer "examen-angular-pwa" activo
+
+
+## Funcionalidad Offline
+
+### Cómo probar offline:
+1. Ejecutar `ng build` para build de producción
+2. Servir con `npx http-server dist/examen-angular-pwa -p 8080`
+3. Abrir http://localhost:8080 y navegar por la app
+4. En DevTools > Network, activar "Offline"
+5. Recargar página - debe seguir funcionando
+
+### Recursos precacheados:
+- ✅ HTML principal (index.html)
+- ✅ CSS de Bootstrap y estilos personalizados
+- ✅ JavaScript de Angular y dependencias
+- ✅ Iconos de la PWA
+- ✅ Manifest.json
+- ✅ Fonts de Font Awesome (cached)
+
+### Verificación del Service Worker:
+- DevTools > Application > Service Workers
+- Debe aparecer "examen-angular-pwa" activo
+
