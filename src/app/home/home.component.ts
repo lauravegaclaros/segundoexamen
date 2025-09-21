@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -15,20 +15,24 @@ export class HomeComponent implements OnInit {
   notificationEnabled = false;
   notificationStatus = '';
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   ngOnInit() {
-    this.notificationSupported = 'Notification' in window;
-    this.updateNotificationStatus();
+    if (isPlatformBrowser(this.platformId)) {
+      this.notificationSupported = 'Notification' in window;
+      this.updateNotificationStatus();
+    }
   }
 
   async requestNotificationPermission() {
-    if ('Notification' in window) {
+    if (isPlatformBrowser(this.platformId) && 'Notification' in window) {
       const permission = await Notification.requestPermission();
       this.updateNotificationStatus();
     }
   }
 
   showTestNotification() {
-    if (Notification.permission === 'granted') {
+    if (isPlatformBrowser(this.platformId) && Notification.permission === 'granted') {
       new Notification('¡Notificación de prueba!', {
         body: 'Esta es una notificación local desde tu PWA',
         icon: '/assets/icons/icon-192x192.png',
@@ -38,6 +42,10 @@ export class HomeComponent implements OnInit {
   }
 
   private updateNotificationStatus() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
     if (!this.notificationSupported) {
       this.notificationStatus = 'Las notificaciones no son compatibles con este navegador';
       return;
